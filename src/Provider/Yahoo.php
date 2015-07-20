@@ -10,6 +10,8 @@
 
     class Yahoo extends AbstractProvider
     {
+        const ACCESS_TOKEN_UID = 'xoauth_yahoo_guid';
+
         /**
          * Get authorization url to begin OAuth flow
          *
@@ -124,4 +126,41 @@
         {
             // TODO: Implement createUser() method.
         }
-    }
+
+        /**
+         * Prepare the access token response for the grant.
+         *
+         * Custom mapping of expirations, etc should be done here. Always call the
+         * parent method when overloading this method!
+         *
+         * @param  mixed $result
+         *
+         * @return array
+         */
+        protected function prepareAccessTokenResponse(array $result)
+        {
+            if (self::ACCESS_TOKEN_UID)
+            {
+                $result['uid'] = $result[self::ACCESS_TOKEN_UID];
+            }
+
+            return $result;
+        }
+
+        public function getResourceOwnerDetailsUrl(AccessToken $token)
+        {
+            // TODO: Implement getResourceOwnerDetailsUrl() method.
+        }
+
+        /**
+         * Generate a resource owner object from a successful resource owner details request.
+         *
+         * @param object      $response
+         * @param AccessToken $token
+         *
+         * @return \League\OAuth2\Client\Provider\ResourceOwnerInterface
+         */
+        protected function createResourceOwner(array $response, AccessToken $token)
+        {
+            // TODO: Implement createResourceOwner() method.
+        }}
