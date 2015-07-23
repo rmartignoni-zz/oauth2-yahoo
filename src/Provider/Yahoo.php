@@ -141,7 +141,7 @@
         {
             if (self::ACCESS_TOKEN_UID)
             {
-                $result['uid'] = $result[self::ACCESS_TOKEN_UID];
+                $result['resource_owner_id'] = $result[self::ACCESS_TOKEN_UID];
             }
 
             return $result;
